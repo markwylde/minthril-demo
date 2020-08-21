@@ -31,6 +31,7 @@ module.exports = function (app, html) {
     }],
     onSubmit: (event, state) => {
       event.preventDefault();
+      app.setFormResult(state);
       console.log('submitted', state);
     },
     onInput: state => console.log('changed', state)
@@ -47,6 +48,13 @@ module.exports = function (app, html) {
         <div class="exampleFormContainer">
           ${myForm}
         </div>
+
+        ${app.state.formResult ? html`
+          <div>
+            <h2>Result</h2>
+            <pre><code>${JSON.stringify(app.state.formResult, null, 2)}</code></pre>
+          </div>
+        ` : null}
 
       </section>
     </main>

@@ -12,7 +12,9 @@ module.exports = function (app, html) {
         <h1>Welcome</h1>
 
         ${infoBox({
-          message: 'This is an infoBox an gives an example of creating an isolated state component'
+          message: html`
+            <div>This uses <strong>minthril.createComponent</strong> that gives an example of creating a component with an isolated state</div>
+          `
         })}
 
         <p>The current time is ${timebox()}</p>

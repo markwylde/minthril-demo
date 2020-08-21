@@ -53,6 +53,12 @@ module.exports = function (config) {
     eventEmitter.emit('stateChanged');
   }
 
+  function setFormResult (formResult) {
+    state.formResult = formResult;
+    console.log(formResult);
+    eventEmitter.emit('stateChanged');
+  }
+
   function setIncrementAmount (newValue) {
     state.incrementAmount = parseFloat(newValue);
     eventEmitter.emit('stateChanged');
@@ -70,6 +76,8 @@ module.exports = function (config) {
   return {
     state,
     emitStateChanged,
+
+    setFormResult,
 
     changeUrl,
     increment,

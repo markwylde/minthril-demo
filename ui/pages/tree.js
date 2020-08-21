@@ -1,3 +1,5 @@
+const hyperx = require('hyperx');
+
 const menu = require('../components/menu');
 
 function insertChildren (app, itemData) {
@@ -33,10 +35,12 @@ function renderChild (html, app, tree) {
   `;
 }
 
-module.exports = function (app, html) {
+module.exports = function (app, h) {
+  const html = hyperx(h);
+
   return html`
     <main>
-      ${menu(app, html)}
+      ${menu(app, h)}
       
       <section>
         <h1>Tree Page</h1>

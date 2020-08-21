@@ -1,4 +1,8 @@
-module.exports = function (app, html) {
+const hyperx = require('hyperx');
+
+module.exports = function (app, h) {
+  const html = hyperx(h);
+
   return html`
     <nav>
       <a href="/">Home</a>

@@ -1,7 +1,8 @@
-const minthril = require('minthril');
-const html = require('hyperx')(minthril);
+const hyperx = require('hyperx');
 
-module.exports = function (options) {
+module.exports = function (h, options) {
+  const html = hyperx(h);
+
   const component = html`
     <dropper 
       name=${options.name}

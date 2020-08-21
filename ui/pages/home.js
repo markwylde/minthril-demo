@@ -1,12 +1,16 @@
+const hyperx = require('hyperx');
+
 const menu = require('../components/menu');
 const dropdown = require('../components/dropdown');
 const timebox = require('../components/timebox');
 const infoBox = require('../components/infoBox');
 
-module.exports = function (app, html) {
+module.exports = function (app, h) {
+  const html = hyperx(h);
+
   return html`
     <main >
-      ${menu(app, html)}
+      ${menu(app, h)}
 
       <section>
         <h1>Welcome</h1>
@@ -20,7 +24,7 @@ module.exports = function (app, html) {
         <p>The current time is ${timebox()}</p>
         <p>How much should we increment by?</p>
 
-        ${dropdown({
+        ${dropdown(h, {
           name: 'incrementAmount',
           items: Array(5).fill('').map((_, index) => ({
             id: index + 1,
@@ -31,7 +35,7 @@ module.exports = function (app, html) {
         })}
 
         <p>Multiple by two?</p>
-        ${dropdown({
+        ${dropdown(h, {
           name: 'multiply',
           items: [
             { id: 1, title: 'No' },

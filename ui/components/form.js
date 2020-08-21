@@ -1,7 +1,10 @@
-const minthril = require('minthril');
-const html = require('hyperx')(minthril);
+const hyperx = require('hyperx');
 
-function createForm (options) {
+const minthril = require('minthril');
+
+function createForm (h, options) {
+  const html = hyperx(h);
+
   return minthril.createComponent(function (state, draw, component) {
     function handleCreate () {
       options.fields.forEach(field => {
@@ -22,7 +25,7 @@ function createForm (options) {
           return html`
             <div class="form-group">
               <label>${field.label}</label>
-              ${field.component({ ...field, onInput: handleInput })}
+              ${field.component(h, { ...field, onInput: handleInput })}
             </div>
           `;
         })}

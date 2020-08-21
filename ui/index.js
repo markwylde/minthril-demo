@@ -1,5 +1,4 @@
 const minthril = require('minthril');
-const html = require('hyperx')(minthril);
 const pushStateAnchors = require('spath/pushStateAnchors');
 require('./modules/onUrlChange');
 
@@ -27,7 +26,7 @@ module.exports = function (app, container) {
 
     const page = pages[app.state.page] || pages.notFound;
 
-    const content = page(app, html);
+    const content = page(app, minthril);
     minthril.render(container, content);
   }
 

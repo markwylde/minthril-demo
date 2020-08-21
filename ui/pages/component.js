@@ -1,10 +1,14 @@
+const hyperx = require('hyperx');
+
 const menu = require('../components/menu');
-const form = require('../components/form');
+const createForm = require('../components/form');
 const formFieldText = require('../components/formFieldText');
 const formFieldSelect = require('../components/formFieldSelect');
 
-module.exports = function (app, html) {
-  const myForm = form({
+module.exports = function (app, h) {
+  const html = hyperx(h);
+
+  const myForm = createForm(h, {
     fields: [{
       name: 'firstName',
       label: 'First Name',
@@ -39,7 +43,7 @@ module.exports = function (app, html) {
 
   return html`
     <main >
-      ${menu(app, html)}
+      ${menu(app, h)}
 
       <section>
         <h1>Example Component</h1>

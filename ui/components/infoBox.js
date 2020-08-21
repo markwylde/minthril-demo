@@ -2,26 +2,17 @@ const minthril = require('minthril');
 const html = require('hyperx')(minthril);
 
 module.exports = function infobox (options) {
-  return minthril.createComponent(function (state, draw, component) {
+  return minthril.createComponent(function (state, draw) {
     function handleClick () {
       state.expanded = !state.expanded;
       draw();
     }
 
-    function handleInput (event) {
-      state[event.target.name] = event.target.value;
-
-      options.onInput && options.onInput(state);
-    }
-
-    component.getValue = () => state.value;
-
     return html`
-      <div>
-        <button onclick=${handleClick}>Toggle</button>
-        <div ${state.expanded ? '' : 'hidden'}>
+      <div class="infobox ${state.expanded ? 'expanded' : ''}">
+        <button onclick=${handleClick}>${state.expanded ? 'Less Information' : 'More Information'}</button>
+        <div>
           ${state.message}
-          <input name="value" oninput=${handleInput} />
         </div>
       </div>
     `;

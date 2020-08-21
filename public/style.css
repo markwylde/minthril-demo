@@ -10,6 +10,15 @@ nav a {
   margin-right: 5px;
 }
 
+.infobox.expanded > div {
+  display: block;
+}
+.infobox > div {
+  display: none;
+  background-color: rgb(231, 231, 241);
+  padding: 10px;
+}
+
 .exampleFormContainer {
   width: 400px;
   padding: 10px;

@@ -4,20 +4,16 @@ const timebox = require('../components/timebox');
 const infoBox = require('../components/infoBox');
 
 module.exports = function (app, html) {
-  const myInfobox = infoBox({
-    message: app.state.message,
-    onInput: state => console.log('i changed', state)
-  });
-
   return html`
     <main >
       ${menu(app, html)}
 
       <section>
-        <h1>Testing</h1>
+        <h1>Welcome</h1>
 
-        <p>Test component:</p>
-        ${myInfobox}
+        ${infoBox({
+          message: 'This is an infoBox an gives an example of creating an isolated state component'
+        })}
 
         <p>The current time is ${timebox()}</p>
         <p>How much should we increment by?</p>

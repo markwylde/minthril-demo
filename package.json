@@ -1,0 +1,34 @@
+{
+  "name": "minthril-example",
+  "version": "1.0.0",
+  "description": "An example of using minthril",
+  "main": "index.js",
+  "scripts": {
+    "build": "node_modules/.bin/browserify -g uglifyify -t envify -t brfs ./index.js --noparse clone > public/index.bundle.js",
+    "watch": "node_modules/.bin/watchify -t envify -t brfs -d -o public/index.bundle.js index.js",
+    "serve": "node_modules/.bin/ws -d ./public --spa index.html",
+    "start": "npm run watch & npm run serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "semistandard": {
+    "ignore": [
+      "index.bundle.js"
+    ]
+  },
+  "devDependencies": {
+    "brfs": "^2.0.2",
+    "browserify": "^16.5.2",
+    "envify": "^4.1.0",
+    "hyperx": "^2.5.4",
+    "local-web-server": "^4.2.1",
+    "minthril": "^2.1.2",
+    "routemeup": "^1.5.0",
+    "semistandard": "^14.2.3",
+    "spath": "^2.0.2",
+    "uglifyify": "^5.0.2",
+    "watchify": "^3.11.1"
+  }
+}

@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: tahoma;
+}
+
+nav a {
+  margin-right: 5px;
+}
+
+.exampleFormContainer {
+  width: 400px;
+  padding: 10px;
+  border: 2px solid black;
+}
+
+.exampleFormContainer .form-group {
+  margin-bottom: 10px;
+}
+
+.exampleFormContainer label:after {
+  content: ':';
+}
+.exampleFormContainer label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.exampleFormContainer input:focus {
+  border-color: blue;
+}
+.exampleFormContainer input {
+  width: 100%;
+  padding: 3px;
+  font-size: 100%;
+  font-weight: bold;
+  border: 2px solid black;
+  outline: none;
+}
+
+.exampleFormContainer button {
+  border: 0;
+  padding: 10px;
+  cursor: pointer;
+  background-color: black;
+  font-size: 100%;
+  color: white;
+}
+
+.exampleFormContainer select:focus {
+  border-color: blue;
+}
+.exampleFormContainer select {
+  cursor: pointer;
+
+  font-weight: bold;
+  outline: none;
+  display: block;
+  width: 100%;
+  padding: 3px 3px 3px 3px;
+  border: 2px solid black;
+  font-size: 100%;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: center;
+}

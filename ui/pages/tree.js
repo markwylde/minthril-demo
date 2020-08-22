@@ -1,4 +1,5 @@
-const hyperx = require('hyperx');
+const minthril = require('minthril');
+const html = require('hyperx')(minthril);
 
 const menu = require('../components/menu');
 
@@ -20,14 +21,14 @@ function insertChildren (app, itemData) {
   };
 }
 
-function renderChild (html, app, tree) {
+function renderChild (app, tree) {
   return html`
     <ul>
       ${tree.map(itemData => {
         return html`
           <li onclick=${insertChildren(app, itemData)}>
             <strong>${itemData.title}</strong> (${itemData.id})
-            ${itemData.children && itemData.children.length > 0 && renderChild(html, app, itemData.children)}
+            ${itemData.children && itemData.children.length > 0 && renderChild(app, itemData.children)}
           </li>
         `;
       })}
@@ -35,17 +36,15 @@ function renderChild (html, app, tree) {
   `;
 }
 
-module.exports = function (app, h) {
-  const html = hyperx(h);
-
+module.exports = function (app) {
   return html`
     <main>
-      ${menu(app, h)}
+      ${menu(app)}
       
       <section>
         <h1>Tree Page</h1>
         <p>This is tree page.</p>
-        ${renderChild(html, app, app.state.tree)}
+        ${renderChild(app, app.state.tree)}
       </section>
     </main>
   `;

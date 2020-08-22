@@ -1,8 +1,7 @@
-const hyperx = require('hyperx');
+const minthril = require('minthril');
+const html = require('hyperx')(minthril);
 
-module.exports = function (app, h) {
-  const html = hyperx(h);
-
+module.exports = function (app) {
   return html`
     <nav>
       <a href="/">Home</a>

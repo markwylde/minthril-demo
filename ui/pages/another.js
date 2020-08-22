@@ -1,14 +1,12 @@
-
-const hyperx = require('hyperx');
+const minthril = require('minthril');
+const html = require('hyperx')(minthril);
 
 const menu = require('../components/menu');
 
-module.exports = function (app, h) {
-  const html = hyperx(h);
-
+module.exports = function (app) {
   return html`
     <main>
-      ${menu(app, h)}
+      ${menu(app)}
       
       <section>
         <h1>Another Page</h1>

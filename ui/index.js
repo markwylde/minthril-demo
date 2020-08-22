@@ -26,7 +26,7 @@ module.exports = function (app, container) {
 
     const page = pages[app.state.page] || pages.notFound;
 
-    const content = page(app, minthril);
+    const content = page(app);
     minthril.render(container, content);
   }
 

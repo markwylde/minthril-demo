@@ -1,9 +1,7 @@
 const minthril = require('minthril');
-const hyperx = require('hyperx');
+const html = require('hyperx')(minthril);
 
-function createFieldText (h, options) {
-  const html = hyperx(h);
-
+function createFieldText (options) {
   return minthril.createComponent(function (state, draw, component) {
     function handleInput (event) {
       state.value = event.target.value;

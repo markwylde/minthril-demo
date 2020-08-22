@@ -1,14 +1,13 @@
-const hyperx = require('hyperx');
+const minthril = require('minthril');
+const html = require('hyperx')(minthril);
 
 const menu = require('../components/menu');
 const createForm = require('../components/form');
 const formFieldText = require('../components/formFieldText');
 const formFieldSelect = require('../components/formFieldSelect');
 
-module.exports = function (app, h) {
-  const html = hyperx(h);
-
-  const myForm = createForm(h, {
+module.exports = function (app) {
+  const myForm = createForm({
     fields: [{
       name: 'firstName',
       label: 'First Name',
@@ -43,7 +42,7 @@ module.exports = function (app, h) {
 
   return html`
     <main >
-      ${menu(app, h)}
+      ${menu(app)}
 
       <section>
         <h1>Example Component</h1>

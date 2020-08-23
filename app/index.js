@@ -4,6 +4,7 @@ const routemeup = require('routemeup');
 const routes = {
   '/': () => 'home',
   '/component': () => 'component',
+  '/order': () => 'order',
   '/another': () => 'another',
   '/tree': () => 'tree'
 };
@@ -16,6 +17,7 @@ module.exports = function (config) {
     exampleNumber: config.initialNumber,
     incrementAmount: 2,
     multiply: 1,
+    orderedData: [],
     tree: [{
       id: '1',
       title: 'One',

@@ -6,6 +6,7 @@ const pages = {
   home: require('./pages/home'),
   component: require('./pages/component'),
   another: require('./pages/another'),
+  order: require('./pages/order'),
   tree: require('./pages/tree'),
   notFound: require('./pages/notFound')
 };

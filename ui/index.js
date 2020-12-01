@@ -4,7 +4,6 @@ require('./modules/onUrlChange');
 
 const pages = {
   home: require('./pages/home'),
-  component: require('./pages/component'),
   another: require('./pages/another'),
   order: require('./pages/order'),
   tree: require('./pages/tree'),
@@ -17,18 +16,13 @@ module.exports = function (app, container) {
   app.changeUrl();
 
   function render (options) {
-    if (options && options.force) {
-      minthril.render(container, '');
-    }
-
     if (!app.state.page) {
       return;
     }
 
     const page = pages[app.state.page] || pages.notFound;
 
-    const content = page(app);
-    minthril.render(container, content);
+    minthril.render(container, minthril(page, { app }));
   }
 
   app.on('stateChanged', render);

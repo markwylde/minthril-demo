@@ -1,5 +1,4 @@
-const minthril = require('minthril');
-const html = require('hyperx')(minthril);
+const m = require('minthril');
 
 const menu = require('../components/menu');
 
@@ -21,31 +20,38 @@ function insertChildren (app, itemData) {
   };
 }
 
-function renderChild (app, tree) {
-  return html`
-    <ul>
-      ${tree.map(itemData => {
-        return html`
-          <li onclick=${insertChildren(app, itemData)}>
-            <strong>${itemData.title}</strong> (${itemData.id})
-            ${itemData.children && itemData.children.length > 0 && renderChild(app, itemData.children)}
-          </li>
-        `;
-      })}
-    </ul>
-  `;
+function treeChild ({ attrs }) {
+  const { app, tree } = attrs;
+
+  return {
+    view: () => m('ul',
+      tree.map(itemData => {
+        const children = itemData.children && itemData.children.length > 0 && m(treeChild, { app, tree: itemData.children });
+        return m('li', { onclick: insertChildren(app, itemData) },
+          m('span',
+            m('strong', itemData.title),
+            m('span', itemData.id)
+          ),
+          children
+        );
+      })
+    )
+  };
 }
 
-module.exports = function (app) {
-  return html`
-    <main>
-      ${menu(app)}
-      
-      <section>
-        <h1>Tree Page</h1>
-        <p>This is tree page.</p>
-        ${renderChild(app, app.state.tree)}
-      </section>
-    </main>
-  `;
+module.exports = function () {
+  return {
+    view: ({ attrs }) => {
+      const app = attrs.app;
+
+      return m('main',
+        m(menu),
+        m('section',
+          m('h1', 'Tree Page'),
+          m('p', 'This is tree page.'),
+          m(treeChild, { app, tree: app.state.tree })
+        )
+      );
+    }
+  };
 };

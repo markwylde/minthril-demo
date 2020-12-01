@@ -1,5 +1,4 @@
-const minthril = require('minthril');
-const html = require('hyperx')(minthril);
+const m = require('minthril');
 
 const menu = require('../components/menu');
 
@@ -7,25 +6,29 @@ function randomBetween (min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function renderChild (app, tree) {
+function child () {
   const handleCreate = id => () => {
     console.log(id, 'has just been created');
   };
 
-  return html`
-    <ul>
-      ${tree.map(orderedData => {
-        return html`
-          <li oncreate=${handleCreate(orderedData.id)} key=${orderedData.id}>
-            I am <strong>${orderedData.id}</strong>
-          </li>
-        `;
-      })}
-    </ul>
-  `;
+  return {
+    view: ({ attrs }) => {
+      const orderedData = attrs.app.state.orderedData;
+      return m('ul',
+        orderedData.map(orderedData => {
+          return m('li',
+            { oncreate: handleCreate(orderedData.id), key: orderedData.id },
+            m('span', `I am ${orderedData.id}`)
+          );
+        })
+      );
+    }
+  };
 }
 
-module.exports = function (app) {
+module.exports = function ({ attrs }) {
+  const app = attrs.app;
+
   function clearTimers () {
     app.state.orderedTimers.forEach(timer => {
       clearTimeout(timer);
@@ -62,15 +65,20 @@ module.exports = function (app) {
     clearTimers();
   }
 
-  return html`
-    <main oncreate=${handleCreate} onremove=${handleRemove}>
-      ${menu(app)}
-      
-      <section>
-        <h1>Order</h1>
-        <p>This is tree page.</p>
-        ${renderChild(app, app.state.orderedData)}
-      </section>
-    </main>
-  `;
+  return {
+    oncreate: handleCreate,
+    onremove: handleRemove,
+    view: ({ attrs }) => {
+      const app = attrs.app;
+
+      return m('main',
+        m(menu),
+        m('section',
+          m('h1', 'Order'),
+          m('p', 'This is ordered data page.'),
+          m(child, { app })
+        )
+      );
+    }
+  };
 };

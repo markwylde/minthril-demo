@@ -75,7 +75,7 @@ module.exports = function ({ attrs }) {
         m(menu),
         m('section',
           m('h1', 'Order'),
-          m('p', 'This is ordered data page.'),
+          m('p', 'Every 500ms an item is pushed, in a random order, to the state:'),
           m(child, { app })
         )
       );

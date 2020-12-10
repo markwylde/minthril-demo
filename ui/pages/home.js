@@ -21,7 +21,7 @@ module.exports = function () {
             ${minthril(infoBox, {
               app,
               message: html`
-                <div>This uses <strong>minthril.createComponent</strong> that gives an example of creating a component with an isolated state</div>
+                <div>This is an example infoBox component</div>
               `
             })}
 

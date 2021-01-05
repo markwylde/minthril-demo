@@ -4,7 +4,9 @@
   "description": "An example of using minthril",
   "main": "index.js",
   "scripts": {
-    "build": "node_modules/.bin/browserify -g uglifyify ./index.js --noparse clone > public/index.bundle.js",
+    "build:jsbun": "jsbun -o public/index.bundle.js index.js && uglifyjs public/index.bundle.js --compress --mangle -o public/index.bundle.js",
+    "build:browserify": "browserify -o public/index.bundle.js index.js && uglifyjs public/index.bundle.js --compress --mangle -o public/index.bundle.js",
+    "build": "npm run build:browserify",
     "watch": "node_modules/.bin/watchify -d -o public/index.bundle.js index.js",
     "serve": "node_modules/.bin/ws -d ./public --spa index.html",
     "start": "npm run watch & npm run serve",
@@ -21,12 +23,16 @@
   "devDependencies": {
     "browserify": "^17.0.0",
     "hyperx": "^2.5.4",
+    "jsbun": "^1.0.4",
     "local-web-server": "^4.2.1",
     "minthril": "^3.0.2",
     "routemeup": "^1.5.0",
     "semistandard": "^16.0.0",
     "spath": "^2.0.2",
-    "uglifyify": "^5.0.2",
+    "uglify-es": "^3.3.9",
     "watchify": "^3.11.1"
+  },
+  "dependencies": {
+    "events": "^3.2.0"
   }
 }

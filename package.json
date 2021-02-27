@@ -10,7 +10,7 @@
     "watch": "node_modules/.bin/watchify -d -o public/index.bundle.js index.js",
     "serve": "node_modules/.bin/ws -d ./public --spa index.html",
     "start": "npm run watch & npm run serve",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run build && node test"
   },
   "keywords": [],
   "author": "",
@@ -21,16 +21,21 @@
     ]
   },
   "devDependencies": {
+    "automage": "^2.3.0",
+    "axios": "^0.21.1",
+    "basictap": "^1.1.12",
     "browserify": "^17.0.0",
     "hyperx": "^2.5.4",
-    "jsbun": "^1.0.4",
+    "jsbun": "^2.0.1",
+    "jsdom": "^16.4.0",
     "local-web-server": "^4.2.1",
     "minthril": "^3.0.5",
     "routemeup": "^1.5.0",
     "semistandard": "^16.0.0",
-    "spath": "^2.0.2",
+    "servatron": "^1.1.1",
+    "spath": "^2.0.3",
     "uglify-es": "^3.3.9",
-    "watchify": "^3.11.1"
+    "watchify": "^4.0.0"
   },
   "dependencies": {
     "events": "^3.2.0"
